@@ -1,0 +1,88 @@
+{
+  "features": [
+    {
+      "name": "gender",
+      "type": "category",
+      "values": [
+        "male",
+        "female"
+      ]
+    },
+    {
+      "name": "married",
+      "type": "category",
+      "values": [
+        "yes",
+        "no"
+      ]
+    },
+    {
+      "name": "dependents",
+      "type": "category",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3+"
+      ]
+    },
+    {
+      "name": "education",
+      "type": "category",
+      "values": [
+        "graduate",
+        "not graduate"
+      ]
+    },
+    {
+      "name": "self_employed",
+      "type": "category",
+      "values": [
+        "yes",
+        "no"
+      ]
+    },
+    {
+      "name": "applicantincome",
+      "type": "number",
+      "min": 0
+    },
+    {
+      "name": "coapplicantincome",
+      "type": "number",
+      "min": 0
+    },
+    {
+      "name": "loanamount",
+      "type": "number",
+      "min": 0
+    },
+    {
+      "name": "loan_amount_term",
+      "type": "number",
+      "min": 0
+    },
+    {
+      "name": "credit_history",
+      "type": "number",
+      "values": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "property_area",
+      "type": "category",
+      "values": [
+        "urban",
+        "semiurban",
+        "rural"
+      ]
+    }
+  ],
+  "target": "loan_status",
+  "target_values": {
+    "0": "rejected",
+    "1": "approved"
+  }
+}

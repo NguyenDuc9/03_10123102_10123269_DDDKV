@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  ai-service:
+    build:
+      context: ./ai-models
+    container_name: ai-service
+    ports:
+      - '8001:8001'
+    environment:
+      - MODEL_PATH=/app/models/model.joblib
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./ai-models/models:/app/models
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'python',
+          '-c',
+          "import urllib.request; urllib.request.urlopen('http://localhost:8001/health').read()",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  backend:
+    build:
+      context: ./app/backend
+    container_name: backend
+    ports:
+      - '8000:8000'
+    environment:
+      - AI_SERVICE_URL=${AI_SERVICE_URL:-http://ai-service:8001}
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongodb:27017}
+      - LOG_LEVEL=INFO
+    depends_on:
+      ai-service:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./app/frontend
+      args:
+        REACT_APP_API_URL: ${API_URL:-http://localhost:8000}
+    container_name: frontend
+    ports:
+      - '3000:80'
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:7
+    container_name: mongodb
+    ports:
+      - '27017:27017'
+    restart: unless-stopped

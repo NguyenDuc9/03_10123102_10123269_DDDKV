@@ -1,0 +1,34 @@
+{
+  "problem": "loan_approval",
+  "model_version": "1.0.0",
+  "dataset": "dataset.csv",
+  "training_samples": 491,
+  "test_samples": 123,
+  "training_date": "2026-09-26T09:16:34.219579+00:00",
+  "models": {
+    "knn": {
+      "accuracy": 0.8455,
+      "precision": 0.8438,
+      "recall": 0.9529,
+      "f1": 0.895
+    },
+    "logistic_regression": {
+      "accuracy": 0.8293,
+      "precision": 0.8721,
+      "recall": 0.8824,
+      "f1": 0.8772
+    },
+    "decision_tree": {
+      "accuracy": 0.7805,
+      "precision": 0.8222,
+      "recall": 0.8706,
+      "f1": 0.8457
+    },
+    "naive_bayes": {
+      "accuracy": 0.8455,
+      "precision": 0.8367,
+      "recall": 0.9647,
+      "f1": 0.8962
+    }
+  }
+}
